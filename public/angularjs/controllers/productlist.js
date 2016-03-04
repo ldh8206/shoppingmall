@@ -1,19 +1,32 @@
 angular.module('shoppingMall')
-  .constant('productListActiveClass', 'btn-primary') //함수호출로 constant
-  .controller('productListController', function($scope, productListActiveClass) { //내부로 contant를 넘겨주어야 사용할수 있음
+	.constant('productListActiveClass', 'btn-primary')
+	.constant('productListPageCount', 3)
+	.controller('productListController', function($scope, productListActiveClass, productListPageCount) {
 
-    var currentCategory = undefined;
+		var currentCategory = undefined;
 
-    $scope.selectCategory = function(category) {
-      currentCategory = category;
-    };
+		$scope.currentPage = 1;
+		$scope.pageSize = productListPageCount;
 
-    $scope.categoryFilterFn = function(item) {
-      return currentCategory === undefined || item.category === currentCategory;
-    };
+		$scope.selectCategory = function(category) {
+			currentCategory = category;
+			$scope.currentPage = 1;
+		};
 
-    $scope.getCategoryClass = function(category) {
-      return currentCategory === category ? productListActiveClass: "";
-    }
+		$scope.selectPage = function(newPage) {
+			$scope.currentPage = newPage;
+		}
 
-  });
+		$scope.categoryFilterFn = function(item) {
+			return currentCategory === undefined || item.category === currentCategory;
+		};
+
+		$scope.getCategoryClass = function(category) {
+			return currentCategory === category ? productListActiveClass: "";
+		}
+
+		$scope.getPageClass = function(page) {
+			return $scope.currentPage === page ? productListActiveClass: "";
+		};
+
+	});
