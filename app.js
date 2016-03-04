@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-  "secret": process.env.FMS_SERVER_KEY,
+  "secret": "KIwE0YFsJUC/xPpaLaEigIGZZUAYlP7qRPLccRXvOfU=",
   "cookie": { "maxAge": 86400000 },
   "resave": true,
   "saveUninitialized": true
