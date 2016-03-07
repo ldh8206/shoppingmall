@@ -1,7 +1,8 @@
 angular.module('shoppingMall')
 	.constant('productListActiveClass', 'btn-primary')
 	.constant('productListPageCount', 3)
-	.controller('productListController', function($scope, productListActiveClass, productListPageCount) {
+	.controller('productListController',
+		function($scope, productListActiveClass, productListPageCount, cart) {
 
 		var currentCategory = undefined;
 
@@ -27,6 +28,9 @@ angular.module('shoppingMall')
 
 		$scope.getPageClass = function(page) {
 			return $scope.currentPage === page ? productListActiveClass: "";
-		};
+		}
 
+		$scope.addToCart = function(product){
+			cart.addProduct(product.id, product.name, product.price);
+		}
 	});
